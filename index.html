@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto-Jogo-Memória</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            height: 100vh;
+            display: flex;
+            background-color: green;
+            background-image: url("img/fundo-de-mesa-de-poquer-na-cor-verde.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .memory-game{
+           border: 2px solid black;
+           height: 630px;
+           width: 630px;
+           margin: auto;
+           display: flex;
+           flex-wrap: wrap;
+           perspective: 1000px; /*efeito 3d*/
+           margin: 10px;
+        }
+
+        .card{
+            margin: 5px;
+            position: relative;
+            width: calc(25% - 10px);
+            height: calc(33.333% - 10px);
+            cursor: pointer;
+            transform: scale(1);
+            transform-style: preserve-3d; /*nao deixa o elemento achatado no plano*/
+            transition: transform .9s;
+
+        }
+
+        .card:active {
+            transform: scale(0.97);
+            transition: transform .3s;
+        }
+
+        .card-front,
+        .card-back{
+            width: 100%;
+            height: 100%;
+            /* padding: 20px; */
+            position: absolute;
+            border-radius: 10px;
+            transform: rotateY(180deg);
+            /* background-color: white; */
+        }
+
+        .card-back{
+            backface-visibility: hidden; /*propriedade que retira o verso do elemento*/
+        }
+
+        .card.flip{
+            transform: rotateY(180deg);
+        }
+
+        .score{
+            color: white;
+            text-shadow: 1px 2px black;
+            display: flex;
+            flex-direction: column;
+            align-content: space-around;
+            align-items: center;
+            width: 40%;
+            padding: 15px;
+        
+        }
+
+        .score h1{
+            font-size: 40px;
+            text-transform: uppercase;
+            padding: 10px;
+            border-bottom: 5px solid red;
+        }
+
+        .score p{
+            font-size: 18px;
+            padding: 30px 0;
+        }
+
+        #button{
+            padding: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            background-color: black;
+            color: red;
+            border-bottom: 5px solid red;
+            cursor: pointer;
+            outline: 0;
+            
+        }
+
+        @media screen and (max-width: 720px){
+
+            body{
+            height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+    
+        }
+
+        .score{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+        
+        }
+        }
+
+        @media screen and (max-width: 460px){
+          
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="score">
+        <div class="titulo">
+            <h1>Jogo da Memória</h1>
+            <p>Vire as cartas e acerte sua igualdade!</p>
+        </div> <!--titulo-->
+        <div class="button">
+            <input id="button" type="button" value="Reiniciar Jogo" onClick="window.location.reload()"> 
+        </div> <!--button-->
+    </div> <!--score-->
+    
+    <main class="memory-game">
+        <div class="card" data-card="king_of_spades2">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/king_of_spades2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="queen_of_hearts2">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/queen_of_hearts2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+        <div class="card" data-card="king_of_spades2">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/king_of_spades2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="queen_of_hearts2">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/queen_of_hearts2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="6_of_hearts">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/6_of_hearts.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="6_of_hearts">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/6_of_hearts.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="jack_of_spades2">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/jack_of_spades2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="king_of_diamonds2">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/king_of_diamonds2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="jack_of_spades2">
+            <img src="img/naipes.jpg"face da carta" class="card-front">
+            <img src="img/jack_of_spades2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="king_of_diamonds2">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/king_of_diamonds2.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="black_joker">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/black_joker.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+        <div class="card" data-card="black_joker">
+            <img src="img/naipes.jpg" alt="face da carta" class="card-front">
+            <img src="img/black_joker.png" alt="verso da carta" class="card-back">
+        </div> <!--card-->
+
+    </main> <!--memory game-->
+
+    <script src="js/config.js"></script>
+</body>
+</html>
